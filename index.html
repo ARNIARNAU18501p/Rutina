@@ -4,224 +4,208 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Rutina</title>
+
         <style>
-            * {
-                margin: 0;
-                padding: 0;
-                font-family: sans-serif
-            }
-            html, body {
-                overflow-x: hidden;
-            }
-            body {
-                height: 491px;
-                width: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-direction: column;
-                background: #1c1c1c;
-            }
-            .app {
-                height: 100%;
-                width: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-direction: column;
-            }
-            .title {
-                color: #fffffa;
-                margin-bottom: 5px;
-            }
-            section {
-                height: 90%;
-                width: 90%;
-                display: grid;
-                grid-template-columns: 65% 35%;
-                align-items: stretch;
-                gap: 10px;
-            }
-            .c1 {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                gap: 10px;
-            }
-            .section {
-                border: 1px solid #fffffa;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-direction: column;
-                text-align: center;
-            }
-            .exercice {
-                color: #fffffa;
-                font-size: 20px;
-                margin-bottom: 10px;
-            }
-            .c2 {
-                border: 1px solid #fffffa;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-direction: column;
-            }
-            #time {
-                color: #fffffa;
-                font-size: 55px;
-            }
-            #status {
-                color: #fffffa;
-                font-size: 35px;
-            }
-            #startOverlay {
-                position: fixed;
-                inset: 0;
-                background: rgba(0, 0, 0, 0.75);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                z-index: 9999;
-            }
-
-            #countdown {
-                font-size: 40px;
-                padding: 20px 60px;
-                border: none;
-                border-radius: 10px;
-                cursor: pointer;
-                background: #e69a00;
-                color: #1c1c1c;
-                font-weight: bold;
-                transition: transform 0.2s ease, background 0.2s ease;
-            }
-
-            #countdown:hover {
-                transform: scale(1.05);
-                background: #ffb733;
-            }
+        *{margin:0;padding:0;font-family:sans-serif}
+        html,body{overflow-x:hidden}
+        body{
+            height:500px;
+            width:100%;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            flex-direction:column;
+            background:#1c1c1c;
+        }
+        .app{
+            height:100%;
+            width:100%;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+        }
+        .title{color:#fffffa;margin-bottom:5px}
+        section{
+            height:90%;
+            width:90%;
+            display:grid;
+            grid-template-columns:65% 35%;
+            gap:10px;
+        }
+        .c1{
+            display:grid;
+            grid-template-columns:repeat(3,1fr);
+            gap:10px;
+        }
+        .section{
+            border:1px solid #fffffa;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            text-align:center;
+        }
+        .exercice{
+            color:#fffffa;
+            font-size:20px;
+            margin-bottom:10px;
+        }
+        .c2{
+            border:1px solid #fffffa;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            align-items:center;
+        }
+        #time{color:#fffffa;font-size:55px}
+        #status{color:#fffffa;font-size:35px}
+        .button{
+            font-size:40px;
+            padding:20px 60px;
+            border:none;
+            border-radius:10px;
+            cursor:pointer;
+            background:#e69a00;
+            color:#1c1c1c;
+            font-weight:bold;
+            margin-top:15px;
+        }
+        #startOverlay{
+            position:fixed;
+            inset:0;
+            background:rgba(0,0,0,.75);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            z-index:9999;
+        }
         </style>
     </head>
+
     <body>
-        <div class="app">
-            <h1 class="title">Exercici</h1>
-            <section>
-                <div class="c1">
-                    <div class="section">
-                        <p class="exercice">Córrer 10min 10km/h 3.5%</p>
-                    </div>
-                    <div class="section">
-                        <p class="exercice">Fondo-davant. 2 pesos. 15x3</p>
-                        <p class="exercice">Obrir-tancar. 1 pesos. 15x3</p>
-                        <p class="exercice">Barra. 3 pesos. 15x3</p>
-                        <p class="exercice">Biceps-cadena. 2 pesos. 15x3</p>
-                        <p class="exercice">Aixecar-cames. 3 pesos. 15x3</p>
-                    </div>
-                    <div class="section">
-                        <p class="exercice">Abdominals. 15x3</p>
-                        <p class="exercice">Cames estirades. 15x3</p>
-                        <p class="exercice">Genolls alts. 30sx2</p>
-                        <p class="exercice">Planxa. 1min</p>
-                        <p class="exercice">Flexions. 5x3</p>
-                    </div>
+
+    <div class="app">
+        <h1 class="title">Exercici</h1>
+
+        <section>
+            <div class="c1">
+                <div class="section"><p class="exercice">Córrer 10min 10km/h 3.5%</p></div>
+                <div class="section">
+                    <p class="exercice">Fondo-davant. 2 pesos. 15x3</p>
+                    <p class="exercice">Obrir-tancar. 1 pesos. 15x3</p>
+                    <p class="exercice">Barra. 4 pesos. 15x3</p>
+                    <p class="exercice">Biceps-cadena. 2 pesos. 15x3</p>
+                    <p class="exercice">Aixecar-cames. 4 pesos. 15x3</p>
                 </div>
-                <div class="c2">
-                    <h1 id="time">000s</h1>
-                    <p id="status">Descans</p>
+                <div class="section">
+                    <p class="exercice">Abdominals. 15x3</p>
+                    <p class="exercice">Cames estirades. 15x3</p>
+                    <p class="exercice">Genolls alts. 1m</p>
+                    <p class="exercice">Planxa. 1min</p>
+                    <p class="exercice">Flexions. 5x3</p>
                 </div>
-            </section>
-        </div>
-        <div id="startOverlay">
-            <div id="countdown">Start</div>
-        </div>
-        <script>
-            let time, i=0;
-            var ti;
-            const timer = document.getElementById("time"),
-                  stat = document.getElementById("status");
-            function text(i){
-                return document.getElementsByClassName("exercice")[i];
+            </div>
+
+            <div class="c2">
+                <h1 id="time">--</h1>
+                <p id="status">Exercici</p>
+            </div>
+        </section>
+    </div>
+
+    <div class="next">
+        <button class="button" id="nextBtn">Next</button>
+    </div>
+
+    <div id="startOverlay">
+        <div class="button" id="countdown">Start</div>
+    </div>
+
+    <script>
+        let i = 0;
+
+        const timer = document.getElementById("time");
+        const stat = document.getElementById("status");
+        const nextBtn = document.getElementById("nextBtn");
+
+        function text(i){
+            return document.getElementsByClassName("exercice")[i];
+        }
+
+        // [reps, restBetweenReps, restAfterExercise]
+        const order = [
+            [1,0,60],
+            [3,5,3],
+            [3,15,30],
+            [3,15,30],
+            [3,15,30],
+            [3,15,120],
+            [3,15,30],
+            [3,15,30],
+            [2,15,60],
+            [1,0,30],
+            [3,30,0]
+        ];
+
+        function sleep(t){
+            return new Promise(r=>setTimeout(r,t*1000));
+        }
+
+        async function countdown(t,s){
+            stat.innerText=s;
+            for(let i=t;i>=0;i--){
+                timer.innerText=i;
+                await sleep(1);
             }
-            const order = [[1, 600, 0, 60], [3, 9, 5, 3], [3, 90, 15, 30], [3, 90, 15, 30], [3, 90, 15, 30], [3, 90, 15, 120], [3, 90, 15, 30], [3, 90, 15, 30], [2, 30, 15, 60], [1, 60, 0, 30], [3, 60, 30, 0]];
-            /*
-            1. highlight exercice
-            2. put time
-            3. put status
-            4. start time (interval)
-            5. timer finalizes
-            6. clear interval
-            7. unhighlight exercice
-            */
-            function sleep(t){
-                return new Promise(resolve => setTimeout(resolve, t*1000));
+        }
+
+        async function exercice(){
+            if(i>=order.length){
+                stat.innerText="Rutina acabada!";
+                timer.innerText=0;
+                return;
             }
-            async function countdown(tm, s){
-                stat.innerText = s;
-                for(let t=tm;t>=0;t--){
-                    timer.innerText = t;
-                    await sleep(1);
-                }
-            }
-            async function exercice(){
-                if(i>=order.length){
-                    stat.innerText = "Rutina acabada!";
-                    timer.innerText = 0;
-                    return;
-                }
-                const [r, t, s, f] = order[i];
-                const current = text(i);
-                const next = text(i+1);
-                current.style.backgroundColor = "green";
-                for(let rep=1;rep<=r;rep++){
-                    await countdown(t, "Exercici");
-                    if(rep<r&&s>0){
-                        await countdown(s, "Descans entre repeticions");
-                    }
-                    if(rep===r&&f>0){
-                        if(next){
-                            next.style.backgroundColor = "#e69a00";
-                        }
-                        await countdown(f, "Descans entre exercicis");
-                        if(next){
-                            next.style.backgroundColor = "";
-                        }
-                    }
-                }
-                current.style.backgroundColor = "";
-                i++;
-                exercice();
-            }
-            const overlay = document.getElementById("startOverlay");
-            const countdownEl = document.getElementById("countdown");
 
-            let started = false;
+            const [, , rest] = order[i];
+            const current = text(i);
+            const next = text(i+1);
 
-            overlay.addEventListener("click", async () => {
-                if (started) return;
-                started = true;
+            current.style.background="green";
+            stat.innerText="Exercici";
+            timer.innerText="--";
 
-                const steps = ["3", "2", "1", "GO"];
-
-                for (let step of steps) {
-                    countdownEl.innerText = step;
-                    countdownEl.style.transform = "scale(1.2)";
-                    countdownEl.style.opacity = "1";
-
-                    await new Promise(res => setTimeout(res, 800));
-
-                    countdownEl.style.transform = "scale(0.8)";
-                    countdownEl.style.opacity = "0.5";
-
-                    await new Promise(res => setTimeout(res, 200));
-                }
-
-                overlay.style.display = "none";
-                exercice();
+            await new Promise(res=>{
+                nextBtn.onclick=()=>res();
             });
-        </script>
-        <script>
-            const REFERNECE_WIDTH=1536;function s(){document.body.style.zoom=window.innerWidth/REFERNECE_WIDTH}window.addEventListener("resize",s);s();
-        </script>
+
+            if(next) next.style.background="#e69a00";
+            if(rest>0) await countdown(rest,"Descans");
+            if(next) next.style.background="";
+
+            current.style.background="";
+            i++;
+            exercice();
+        }
+
+        const overlay=document.getElementById("startOverlay");
+        const countdownEl=document.getElementById("countdown");
+
+        overlay.onclick=async()=>{
+            const steps=["3","2","1","GO"];
+            for(const s of steps){
+                countdownEl.innerText=s;
+                await new Promise(r=>setTimeout(r,700));
+            }
+            overlay.style.display="none";
+            exercice();
+        };
+    </script>
+
+    <script>
+        const REF=1536;
+        function scale(){document.body.style.zoom=window.innerWidth/REF}
+        window.addEventListener("resize",scale);
+        scale();
+    </script>
+
     </body>
 </html>
