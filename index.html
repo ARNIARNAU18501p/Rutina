@@ -88,7 +88,10 @@
 
         <section>
             <div class="c1">
-                <div class="section"><p class="exercice">Córrer 10min 10km/h 3.5%</p></div>
+                <div class="section">
+                    <p class="exercice">Córrer 10min 10km/h 3.5%</p>
+                    <p class="exercice">Remo 10min</p>
+                </div>
                 <div class="section">
                     <p class="exercice">Fondo-davant. 2 pesos. 15x3</p>
                     <p class="exercice">Obrir-tancar. 1 pesos. 15x3</p>
@@ -131,79 +134,121 @@
             return document.getElementsByClassName("exercice")[i];
         }
 
-        // [reps, restBetweenReps, restAfterExercise]
+        // [name, type, work, repRest, setRest]
         const order = [
-            [1,0,60],
-            [3,5,3],
-            [3,15,30],
-            [3,15,30],
-            [3,15,30],
-            [3,15,120],
-            [3,15,30],
-            [3,15,30],
-            [2,15,60],
-            [1,0,30],
-            [3,30,0]
+            ["Córrer 10min 10km/h 3.5%", "duration", 600, 0, 120],
+            ["Remo 10min", "duration", 600, 0, 120],
+
+            ["Fondo-davant (15x3, 2p)", "sets", 15, 15, 45],
+            ["Obrir-tancar (15x3, 1p)", "sets", 15, 15, 45],
+            ["Barra (15x3, 4p)", "sets", 15, 15, 45],
+            ["Biceps-cadena (15x3, 2p)", "sets", 15, 15, 45],
+            ["Aixecar-cames (15x3, 4p)", "sets", 15, 15, 120],
+
+            ["Abdominals (15x3)", "sets", 15, 15, 45],
+            ["Cames estirades (15x3)", "sets", 15, 15, 45],
+
+            ["Genolls alts", "duration", 60, 0, 30],
+            ["Planxa", "duration", 60, 0, 30],
+
+            ["Flexions (5x3)", "sets", 5, 15, 0],
         ];
 
         function sleep(t){
-            return new Promise(r=>setTimeout(r,t*1000));
+            return new Promise(r => setTimeout(r, t * 1000));
         }
 
-        async function countdown(t,s){
-            stat.innerText=s;
-            for(let i=t;i>=0;i--){
-                timer.innerText=i;
+        async function countdown(t, label){
+            stat.innerText = label;
+            for(let s = t; s >= 0; s--){
+                timer.innerText = s;
                 await sleep(1);
             }
         }
 
+        async function runSets(name, reps, repRest, setRest){
+            stat.innerText = name;
+
+            for(let s = 1; s <= 3; s++){
+                timer.innerText = `Set ${s}/3`;
+
+                await new Promise(res => {
+                    nextBtn.onclick = () => res();
+                });
+
+                // rest between sets (not after last set)
+                if(s < 3 && repRest > 0){
+                    await countdown(repRest, "Descans curt");
+                }
+            }
+
+            // long rest after full exercise
+            if(setRest > 0){
+                await countdown(setRest, "Descans llarg");
+            }
+        }
+
+        async function runDuration(name, seconds, setRest){
+            stat.innerText = name;
+            await countdown(seconds, "Treball");
+
+            if(setRest > 0){
+                await countdown(setRest, "Descans");
+            }
+        }
+
         async function exercice(){
-            if(i>=order.length){
-                stat.innerText="Rutina acabada!";
-                timer.innerText=0;
+            if(i >= order.length){
+                stat.innerText = "Rutina acabada!";
+                timer.innerText = 0;
                 return;
             }
 
-            const [, , rest] = order[i];
+            const [name, type, work, repRest, setRest] = order[i];
+
             const current = text(i);
-            const next = text(i+1);
+            const next = text(i + 1);
 
-            current.style.background="green";
-            stat.innerText="Exercici";
-            timer.innerText="--";
+            current.style.background = "green";
 
-            await new Promise(res=>{
-                nextBtn.onclick=()=>res();
-            });
+            if(type === "sets"){
+                await runSets(name, work, repRest, setRest);
+            } 
+            else if(type === "duration"){
+                await runDuration(name, work, setRest);
+            }
 
-            if(next) next.style.background="#e69a00";
-            if(rest>0) await countdown(rest,"Descans");
-            if(next) next.style.background="";
+            current.style.background = "";
+            if(next) next.style.background = "";
 
-            current.style.background="";
             i++;
             exercice();
         }
 
-        const overlay=document.getElementById("startOverlay");
-        const countdownEl=document.getElementById("countdown");
+        const overlay = document.getElementById("startOverlay");
+        const countdownEl = document.getElementById("countdown");
 
-        overlay.onclick=async()=>{
-            const steps=["3","2","1","GO"];
+        overlay.onclick = async () => {
+            const steps = ["3", "2", "1", "GO"];
+
             for(const s of steps){
-                countdownEl.innerText=s;
-                await new Promise(r=>setTimeout(r,700));
+                countdownEl.innerText = s;
+                await sleep(0.7);
             }
-            overlay.style.display="none";
+
+            overlay.style.display = "none";
             exercice();
         };
     </script>
 
     <script>
-        const REF=1536;
-        function scale(){document.body.style.zoom=window.innerWidth/REF}
-        window.addEventListener("resize",scale);
+        const REF = 1536;
+
+        function scale(){
+            document.body.style.zoom = window.innerWidth / REF;
+        }
+
+        window.addEventListener("resize", scale);
         scale();
     </script>
 
